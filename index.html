@@ -197,6 +197,7 @@
 </head>
 
 <body>
+    <!-- bagian navbar header -->
     <div class="header">
         <ul>
             <li><a href="help.html">Help</a></li>
@@ -205,44 +206,58 @@
             <li><a href="/">Home </a></li>
         </ul>
     </div>
+
+    <!-- form login  -->
     <div class="login-container" id="login-container">
         <form id="formLogin" name="formLogin">
             <div class="container">
                 <span class="login">Login</span>
+                <!-- input username -->
                 <input placeholder="Username" class="input-box mb" size="23" type="text" name="username"
                     id="username" />
+                <!-- input  password-->
                 <input placeholder="Password" class="input-box mb" size="23" type="password" name="pass" id="pass" />
+                <!-- button login -->
                 <input type="button" class="button mb" value="Sign in" onclick="validateLoginForm()" />
+                <!-- button untuk register -->
                 <span onclick="signUpToggle()" class="sign-up">Sign Up</span>
             </div>
         </form>
     </div>
+    <!-- form register -->
     <div class="signup-container" id="signup-container">
         <form id="formRegister" name="formRegister">
             <div class="container">
                 <span class="login">Register</span>
+                 <!-- input username baru -->
                 <input placeholder="Username" class="input-box mb" size="23" type="text" name="newUsername"
                     id="newUsername" />
+                <!-- input password baru -->
                 <input placeholder="Password" class="input-box mb" size="23" type="password" name="newPass"
                     id="newPass" />
+                <!-- input ulang password baru -->
                 <input placeholder="Confirm Password" class="input-box mb" size="23" type="password" name="confpass"
                     id="confpass" />
+                <!-- button register -->
                 <input type="button" class="button mb" value="Sign Up" onclick="validateRegisterForm()" />
+                <!-- button untuk login -->
                 <span onclick="signUpToggle()" class="sign-up">Login</span>
             </div>
         </form>
     </div>
+    <!-- form nilai -->
     <div class="nilai-container" id="nilai-container">
         <form id="formNilai" name="formNilai">
             <div class="container">
                 <span class="login">Form Nilai</span>
                 <div class="form-container">
                     <div class="form-wrapper">
-                        <div class="form-item">
+                        <div>
                             <span class="text-nilai">IMK UTS</span>
                         </div>
                         <div class="px">:</div>
-                        <div class="form-item">
+                        <div>
+                            <!-- input uts -->
                             <input class="input-box mb" type="text" id="uts" name="uts" />
                         </div>
                     </div>
@@ -252,6 +267,7 @@
                         </div>
                         <div class="px">:</div>
                         <div>
+                            <!-- input ujian utama -->
                             <input class="input-box mb" type="text" id="uu" name="uu" />
                         </div>
                     </div>
@@ -261,22 +277,39 @@
                         </div>
                         <div class="px">:</div>
                         <div>
+                            <!-- ouput untuk menampilkan nilai akhir -->
                             <span id="nilai-akhir" class="text-nilai"> </span>
                         </div>
                     </div>
                 </div>
+                <!-- button submit form nilai, akan menampilkan hasil nilai akhir -->
                 <input type="button" class="button mb" value="Submit" onclick="validateSubmitForm()" />
             </div>
         </form>
     </div>
     <script>
+        // array untuk menyimpan username dan password 
         const users = [
             {
                 username: "admin",
                 password: "123",
             }
         ];
+        //toggle login and form nilai
+        function loginToggle() {
+            let login = document.getElementById("login-container");
+            let nilai = document.getElementById("nilai-container");
+            if (login.style.display === "block" && nilai.style.display === "none") {
+                login.style.display = "none";
+                nilai.style.display = "block";
+            } else {
+                login.style.display = "block";
+                nilai.style.display = "none";
+            }
+        }
 
+        /*mengecek apakah input yang diberikan oleh user valid atau tidak.
+          jika valid akan mengubah gambar dan form login menjadi form input nilai*/
         function validateLoginForm() {
             let username = document.forms["formLogin"]["username"].value;
             let password = document.forms["formLogin"]["pass"].value;
@@ -290,7 +323,10 @@
                 return false;
             }
 
+            //mengecek data user yg di masukan apakah terdapat pada array
             const login = users.find(user => user.username === username && user.password === password);
+            //jika user ada akan pindah ke form input nilai dan bg image berubah
+            //jika tidak akan menampilkan alert
             if (login) {
                 loginToggle();
                 document.body.style.backgroundImage = "url('https://images.metmuseum.org/CRDImages/as/original/DP141234.jpg')";
@@ -299,6 +335,8 @@
             }
         }
 
+        /*mengecek apakah input yang diberikan oleh user valid atau tidak.
+          jika valid akan pindah ke form login*/
         function validateRegisterForm() {
             let newUsername = document.forms["formRegister"]["newUsername"].value;
             let newPassword = document.forms["formRegister"]["newPass"].value;
@@ -324,8 +362,10 @@
                 return false;
             }
 
+            // memasukan username dan password baru ke dalam array users
             users.push({ username: newUsername, password: newPassword });
             alert("register berhasil");
+            // pindah ke tampilan login
             signUpToggle();
         }
 
@@ -343,6 +383,7 @@
             document.getElementById("nilai-akhir").innerHTML = nilaiAkhir;
         }
 
+        //toggle register dan login  
         function signUpToggle() {
             let login = document.getElementById("login-container");
             let signUp = document.getElementById("signup-container");
@@ -352,17 +393,6 @@
             } else {
                 signUp.style.display = "none";
                 login.style.display = "block";
-            }
-        }
-        function loginToggle() {
-            let login = document.getElementById("login-container");
-            let nilai = document.getElementById("nilai-container");
-            if (login.style.display === "block" && nilai.style.display === "none") {
-                login.style.display = "none";
-                nilai.style.display = "block";
-            } else {
-                login.style.display = "block";
-                nilai.style.display = "none";
             }
         }
     </script>
