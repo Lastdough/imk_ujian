@@ -5,8 +5,10 @@
     <meta charset="utf-8">
     <title>Ujian IMK</title>
     <style>
+        /*mengimport font DM sans dari google font*/
         @import url('https://fonts.googleapis.com/css2?family=DM+Sans:wght@500&display=swap');
 
+        /*set font-family jadi dm-sans dan backgroud image*/
         body {
             font-family: 'DM Sans';
             background-image: url(https://images.metmuseum.org/CRDImages/as/original/DP130155.jpg);
@@ -17,17 +19,20 @@
         /*sets text alignment of the elements to center.*/
         .text-center {
             text-align: center;
-        }
+        }    
 
-        /*sets a padding of 8px for elements.*/
-        .p-8 {
-            padding: 8px;
-        }
-
+        /*sets a margin botton of 10px for elements.*/
         .mb {
             margin-bottom: 10px;
         }
 
+        /*sets a padding left and right of 8px for elements.*/
+        .px {
+            padding-left: 8px;
+            padding-right: 8px;
+        }
+
+        /*sets a ul with bg-color and without the list style*/
         ul {
             list-style-type: none;
             margin: 0;
@@ -36,10 +41,12 @@
             background-color: rgb(46, 41, 41);
         }
 
+        /*sets li elements to the right.*/
         li {
             float: right;
         }
 
+        /*sets style for a elements inside li*/
         li a {
             display: block;
             color: white;
@@ -47,12 +54,14 @@
             padding: 14px 16px;
             text-decoration: none;
         }
-
+        
+        
+        /*sets hover for a elements inside li*/
         li a:hover {
             background-color: #111;
         }
 
-
+        /*sets form login container style*/
         .login-container {
             display: block;
             background-color: white;
@@ -68,7 +77,8 @@
             padding-bottom: 28px;
             box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
         }
-
+        
+        /*sets form sign up container style*/
         .signup-container {
             display: none;
             background-color: white;
@@ -85,6 +95,24 @@
             box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
         }
 
+        
+        /*sets form nilai container style*/
+        .nilai-container {
+            display: none;
+            background-color: white;
+            width: fit-content;
+            margin: auto;
+            margin-top: 24px;
+            border-radius: 5px;
+            background: #D9D9D9;
+            padding-left: 24px;
+            padding-right: 24px;
+            padding-top: 28px;
+            padding-bottom: 28px;
+            box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+        }
+
+        /*set a style for input box*/
         .input-box {
             font-weight: 500;
             font-size: 16px;
@@ -98,11 +126,25 @@
             color: #DBDBDB;
         }
 
+        /*sets flex direction to column*/
         .container {
             display: flex;
             flex-direction: column;
         }
 
+        /*sets flex direction to colum*/
+        .form-container {
+            display: flex;
+            flex-direction: column;
+        }
+
+        /*sets align-items to baseline*/
+        .form-wrapper {
+            display: flex;
+            align-items: baseline;
+        }
+
+        /*set a style for login text */
         .login {
             left: 496px;
             top: 343px;
@@ -112,7 +154,8 @@
             line-height: 42px;
             color: #3A4C5D;
         }
-
+        
+        /*set a style for button*/
         .button {
             display: block;
             width: 100%;
@@ -126,30 +169,40 @@
             color: #DBDBDB;
         }
 
+        /*set a style for hover over button*/
         .button:hover {
             filter: brightness(85%);
         }
 
+        /*TEXT*/
+
+        /*set a style for sign up text*/
         .sign-up {
             color: #3A4C5D;
             cursor: pointer;
         }
 
+        /*set a style for sign up text hover*/
         .sign-up:hover {
             color: #000;
+        }
+
+        /*set a style for text-nilai*/
+        .text-nilai {
+            font-size: 16px;
+            line-height: 33px;
+            font-weight: 500;
         }
     </style>
 </head>
 
 <body>
-    <div class="block">
-    </div>
     <div class="header">
         <ul>
             <li><a href="help.html">Help</a></li>
             <li><a href="contact.html">Contact </a></li>
             <li><a href="about.html">About Us</a></li>
-            <li><a href="home.html">Home </a></li>
+            <li><a href="/">Home </a></li>
         </ul>
     </div>
     <div class="login-container" id="login-container">
@@ -179,6 +232,43 @@
             </div>
         </form>
     </div>
+    <div class="nilai-container" id="nilai-container">
+        <form id="formNilai" name="formNilai">
+            <div class="container">
+                <span class="login">Form Nilai</span>
+                <div class="form-container">
+                    <div class="form-wrapper">
+                        <div class="form-item">
+                            <span class="text-nilai">IMK UTS</span>
+                        </div>
+                        <div class="px">:</div>
+                        <div class="form-item">
+                            <input class="input-box mb" type="text" id="uts" name="uts" />
+                        </div>
+                    </div>
+                    <div class="form-wrapper">
+                        <div>
+                            <span class="text-nilai">IMK UU</span>
+                        </div>
+                        <div class="px">:</div>
+                        <div>
+                            <input class="input-box mb" type="text" id="uu" name="uu" />
+                        </div>
+                    </div>
+                    <div class="form-wrapper">
+                        <div>
+                            <span class="text-nilai">Nilai Akhir</span>
+                        </div>
+                        <div class="px">:</div>
+                        <div>
+                            <span id="nilai-akhir" class="text-nilai"> </span>
+                        </div>
+                    </div>
+                </div>
+                <input type="button" class="button mb" value="Submit" onclick="validateSubmitForm()" />
+            </div>
+        </form>
+    </div>
     <script>
         const users = [
             {
@@ -199,12 +289,11 @@
                 alert("Password tidak boleh kosong!");
                 return false;
             }
-            //const newUser = JSON.parse(localStorage.getItem("users"));
-            //users.push(newUser);
+
             const login = users.find(user => user.username === username && user.password === password);
             if (login) {
-                alert("login berhasil");
-                return false;
+                loginToggle();
+                document.body.style.backgroundImage = "url('https://images.metmuseum.org/CRDImages/as/original/DP141234.jpg')";
             } else {
                 alert("username atau password salah");
             }
@@ -230,19 +319,30 @@
                 return false;
             }
 
-            //const usernameInUse = 
             if (users.find(user => user.username === newUsername)) {
                 alert("username is already in use.");
                 return false;
             }
 
-            //const newUser = {}
-
             users.push({ username: newUsername, password: newPassword });
             alert("register berhasil");
             signUpToggle();
-            //localStorage.setItem("users", JSON.stringify(users));
         }
+
+        function validateSubmitForm() {
+            let uts = document.forms["formNilai"]["uts"].value;
+            let uu = document.forms["formNilai"]["uu"].value;
+
+            if ((uts == "" || uts == " ") || (uu == "" || uu == " ")) {
+                alert("nilai tidak boleh kosong!");
+                return false;
+            }
+
+            let nilaiAkhir = ((uts * 0.3) + (uu * 0.7));
+
+            document.getElementById("nilai-akhir").innerHTML = nilaiAkhir;
+        }
+
         function signUpToggle() {
             let login = document.getElementById("login-container");
             let signUp = document.getElementById("signup-container");
@@ -252,6 +352,17 @@
             } else {
                 signUp.style.display = "none";
                 login.style.display = "block";
+            }
+        }
+        function loginToggle() {
+            let login = document.getElementById("login-container");
+            let nilai = document.getElementById("nilai-container");
+            if (login.style.display === "block" && nilai.style.display === "none") {
+                login.style.display = "none";
+                nilai.style.display = "block";
+            } else {
+                login.style.display = "block";
+                nilai.style.display = "none";
             }
         }
     </script>
